@@ -50,6 +50,15 @@ export default defineNuxtConfig({
     blob: true,
   },
 
+  vite: {
+    optimizeDeps: {
+      include: ['better-auth']
+    },
+    ssr: {
+      noExternal: ['better-auth']
+    },
+  },
+
   eslint: {
     config: {
       standalone: false,
