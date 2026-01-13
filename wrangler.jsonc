@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "better-auth-nuxt-poc",
+  "main": "./.output/server/index.mjs",
+  "compatibility_date": "2026-01-10",
+  "preview_urls": false,
+  "workers_dev": false,
+  "build": {
+    "command": "pnpm build && pnpm db:migrate:remote"
+  },
+  "assets": {
+    "directory": "./.output/public/",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "2a8ad636-05ed-443f-bfa7-b6b03ca4745d",
+      "migrations_table": "_hub_migrations",
+      "migrations_dir": ".output/server/db/migrations/sqlite"
+    }
+  ],
+  "vars": {
+    "NUXT_PUBLIC_SITE_URL": "https://better-auth-nuxt-poc.k-urtica.workers.dev",
+    "NUXT_PUBLIC_SITE_NAME": "Better Auth Nuxt POC"
+  }
+}
