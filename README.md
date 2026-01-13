@@ -5,6 +5,12 @@ This repository is for investigating OAuth sign-in issues in Cloudflare Workers 
 - **Working version**: better-auth v1.3.34
 - **Broken versions**: v1.4.0+ (tested with v1.4.0, v1.4.11)
 
+Using the following commands confirmed no duplicate Better Auth packages:
+
+- pnpm why @better-auth/core
+- pnpm why better-auth
+- pnpm why better-call
+
 ## Error in Cloudflare Workers
 
 ```
