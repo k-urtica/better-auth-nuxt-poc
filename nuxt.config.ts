@@ -47,7 +47,6 @@ export default defineNuxtConfig({
       // Therefore, disable migrations during build and run them after build using wrangler CLI.
       applyMigrationsDuringBuild: false,
     },
-    blob: true,
   },
 
   vite: {
