@@ -42,15 +42,18 @@ export default defineNuxtConfig({
     db: {
       dialect: 'sqlite',
       driver: 'libsql',
-      // NuxtのビルドがCloudflare workersランタイム外で実行されるため、
-      // D1バインディングやd1-httpドライバを利用できず、ビルド時にDBに接続できない。
-      // そのため、ビルド中のマイグレーションを無効化し、ビルド後にwrangler cliでマイグレーションを実行する。
+      // Since Nuxt builds run outside the Cloudflare Workers runtime,
+      // D1 bindings and the d1-http driver cannot be used, preventing DB connections during build.
+      // Therefore, disable migrations during build and run them after build using wrangler CLI.
       applyMigrationsDuringBuild: false,
     },
     blob: true,
   },
 
   vite: {
+    resolve: {
+      dedupe: ['better-auth']
+    },
     optimizeDeps: {
       include: ['better-auth']
     },
