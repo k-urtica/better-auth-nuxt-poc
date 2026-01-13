@@ -1,8 +1,8 @@
 // @ts-check
-import antfu from '@antfu/eslint-config'
-import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss'
+import antfu from '@antfu/eslint-config';
+import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss';
 
-import withNuxt from './.nuxt/eslint.config.mjs'
+import withNuxt from './.nuxt/eslint.config.mjs';
 
 export default withNuxt(
   antfu({
@@ -73,4 +73,4 @@ export default withNuxt(
       'better-tailwindcss/no-duplicate-classes': 'error',
       'better-tailwindcss/no-unnecessary-whitespace': 'error'
     }
-  })
+  });
