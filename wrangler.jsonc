@@ -4,7 +4,7 @@
   "main": "./.output/server/index.mjs",
   "compatibility_date": "2026-01-10",
   "preview_urls": false,
-  "workers_dev": false,
+  "workers_dev": true,
   "build": {
     "command": "pnpm build && pnpm db:migrate:remote"
   },
