@@ -58,17 +58,17 @@ export default defineNuxtConfig({
     },
   },
 
-  vite: {
-    resolve: {
-      dedupe: ['better-auth']
-    },
-    optimizeDeps: {
-      include: ['better-auth']
-    },
-    ssr: {
-      noExternal: ['better-auth']
-    },
-  },
+  // vite: {
+  //   resolve: {
+  //     dedupe: ['better-auth']
+  //   },
+  //   optimizeDeps: {
+  //     include: ['better-auth']
+  //   },
+  //   ssr: {
+  //     noExternal: ['better-auth']
+  //   },
+  // },
 
   eslint: {
     config: {
