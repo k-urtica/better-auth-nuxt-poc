@@ -36,6 +36,12 @@ export default defineNuxtConfig({
     prerender: {
       autoSubfolderIndex: false,
     },
+    experimental: {
+      asyncContext: true,
+    },
+    unenv: {
+      external: ['node:async_hooks'],
+    },
   },
 
   hub: {
