@@ -42,6 +42,9 @@ export default defineNuxtConfig({
     unenv: {
       external: ['node:async_hooks'],
     },
+    rollupConfig: {
+      external: ['cloudflare:workers']
+    },
   },
 
   hub: {
