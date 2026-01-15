@@ -27,6 +27,7 @@
     }
   ],
   "vars": {
+    "NUXT_PUBLIC_BETTER_AUTH_URL": "https://better-auth-nuxt-poc.k-urtica.workers.dev",
     "NUXT_PUBLIC_SITE_URL": "https://better-auth-nuxt-poc.k-urtica.workers.dev"
   }
 }
