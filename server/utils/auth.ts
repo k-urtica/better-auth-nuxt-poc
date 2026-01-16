@@ -1,78 +1,24 @@
 import type { H3Event } from 'h3';
-import { betterAuth } from 'better-auth';
+import type { BetterAuthInstance } from './authFactory';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-// @ts-expect-error no types
-import { env } from 'cloudflare:workers';
-import { runtimeConfig } from './runtimeConfig';
+import { createBetterAuth } from './authFactory';
 
-const IS_BETTER_AUTH_CLI = process.env.BETTER_AUTH_CLI === 'true';
+let _auth: BetterAuthInstance | undefined;
 
-const createBetterAuth = (database: { database: any }) => betterAuth({
-  baseURL: runtimeConfig.betterAuthBaseURL,
-  secret: runtimeConfig.betterAuthSecret,
-  ...database,
-  emailAndPassword: {
-    enabled: true,
-  },
-  socialProviders: {
-    google: {
-      clientId: runtimeConfig.oauthGoogleClientId,
-      clientSecret: runtimeConfig.oauthGoogleClientSecret,
-    },
-  },
-  account: {
-    accountLinking: {
-      enabled: true,
-    },
-  },
-  session: {
-    cookieCache: {
-      enabled: true,
-      maxAge: 5 * 60,
-    },
-  },
-  user: {
-    deleteUser: {
-      enabled: true,
-    },
-  },
-});
-
-// For Better Auth CLI client
-let _authCli: ReturnType<typeof createBetterAuth> | undefined;
-
-if (IS_BETTER_AUTH_CLI) {
-  _authCli = createBetterAuth({
-    database: drizzleAdapter(env.DB, {
-      provider: 'sqlite'
-    })
-  });
-}
-
-/**
- * For Better Auth CLI operations
- */
-export const auth = (() => {
-  if (!IS_BETTER_AUTH_CLI) {
-    return;
-  }
-  if (!_authCli) {
-    throw new Error('Auth client is not initialized');
-  }
-  return _authCli;
-})();
-
-let _auth: ReturnType<typeof createBetterAuth>;
-
-export function serverAuth() {
+const getAuth = () => {
   if (!_auth) {
     _auth = createBetterAuth({
       database: drizzleAdapter(db, {
         provider: 'sqlite',
-      })
+        schema
+      }),
     });
-  };
+  }
   return _auth;
+};
+
+export function serverAuth() {
+  return getAuth();
 }
 
 export async function requireUserSession(event: H3Event) {

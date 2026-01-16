@@ -11,7 +11,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "typecheck": "nuxt typecheck",
-    "auth:schema": "BETTER_AUTH_CLI=true pnpm dlx @better-auth/cli generate --config server/utils/auth.ts --output server/db/schema/auth.ts",
+    "auth:schema": "BETTER_AUTH_CLI=true pnpm dlx @better-auth/cli generate --config server/utils/authCli.ts --output server/db/schema/auth.ts",
     "db:generate": "nuxt db generate",
     "db:migrate:remote": "wrangler d1 migrations apply DB --remote"
   },
